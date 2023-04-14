@@ -13,8 +13,20 @@ interface  HomeViewModel{
       fun updateNote(note: NoteEntity)
       fun deleteNote(note: NoteEntity)
   }
-
+@HiltViewModel
 class  HomeViewModel
 constructor(
-    private  val noteRepository: NoteRepository
-): ViewModel(),
+    private  val noteRepository: NoteRepository,
+): ViewModel(), HomeViewModelAbstract{
+    override  val noteListFlow:Flow<List<NoteEntity>> = noteRepository.getAllFlow()
+
+     override fun addNote(note: NoteEntity) = noteRepository.insert(note =note)
+
+    override fun updateNote(note: NoteEntity) = noteRepository.update(note =note)
+
+    override fun deleteNote(note: NoteEntity) = noteRepository.delete(note =note)
+
+
+
+
+}
