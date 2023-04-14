@@ -9,7 +9,7 @@ import com.clinton.noteapp.model.NoteEntity as NoteEntity1
 @Dao
 interface NoteDao {
     @Query("select * from noteentity")
-    fun getAll(): Flow<List<NoteEntity1>>
+    fun getAllFlow(): Flow<List<NoteEntity1>>
 
     @Insert
     fun insert(note: NoteEntity1)
